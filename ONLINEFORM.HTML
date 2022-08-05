@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Registration Form </title>
+    <link rel="stylesheet" href="ONLINEFORMSTYLE.CSS">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+  
+   </head>
+   
+   
+<body>
+
+
+
+  <div class="container">
+  <div class="title">Registration Form</div>
+    <div class="content">
+	
+	<!-- First Name -->
+      <form name="myForm" action="successful.html" onsubmit="return validateForm()" method="post">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">First Name</span>
+            <input type="text" id="fname" placeholder="Enter your First name"  title="Please Enter First Name In Correct Format">
+          </div>
+		  <!-- Last Name -->
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <input type="text" id="lname" placeholder="Enter your Last name" title="Please Enter Last Name In Correct Format">
+          </div>
+		  
+	
+		  <!-- Email  -->
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" id="email" placeholder="Enter your Email" title="Please Enter Email in Correct Format">
+          </div>
+           
+          <!-- Phone  -->
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" id="phonenum" placeholder="Enter your number"  title="Mobile Number should not exceed 15 digits" >
+          </div>
+            <!-- Date of Birth  -->
+          <div class="input-box">
+            <span class="details">Date Of Birth</span>
+            <input type="date" id="calender" placeholder="Enter DOB" value="2004-01-01" min="1922-01-01" max="2004-12-31">
+          </div> 
+             <!-- Country  -->
+
+                <div>
+				    <td> <select onchange="myfunc(this)">
+					        <option value="M">Mauritius
+							<option value="O">Other
+						</select>
+						<br/><br/>
+					</td> <input id="txtOther" type="text" style="display: none"/>
+				</div>	
+				
+				<div>
+				    <td>Street</td>
+					<td> <textarea name="street" rows="4" cols="30"> </textarea>
+					</td>
+				</div>
+				
+				
+			<div>
+				<td>City</td>
+                         <select id="City" name=city">
+					       <option value="select a city">select a city</option>
+					       <option value="Grand Baie">Grand Baie</option>
+						   <option value="Pamplemousses">Pamplemousses</option>
+						   <option value="Port-Louis">Port-Louis</option>
+						   <option value="Beau Bassin">Beau Bassin</option>
+						   <option value="Curepipe">Curepipe</option>
+					     </select>
+            </div>
+
+
+
+		   <!--NIC-->
+		       <div class="input-box">
+				    <td>NIC</td>
+					<td> <input type="text" name="nic" maxlength="14"/>
+					</td>
+				</div>
+				
+        <!---passport--->
+		        <div class="input-box">
+				    <td>Passport</td>
+					<td> <input type="text" name="passport" value="P" maxlength="8"/>
+				</div>					
+		
+		
+		  <!-- Password  -->
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" id="pwd" placeholder="Enter your password" name="password" minlength="8" maxlength="30" required title="password must be > 8 and contain one uppercase,one symbol and a number">
+          </div>
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		   <!-- Confirm password  -->
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input type="password" id="cpwd" placeholder="Confirm your password" name="cpassword" required title=" confirm password">
+          </div>
+        </div>
+		
+		  <!--gender-->
+		  <div>
+		  <span class="details">Gender : </span>
+			 Male <input type="checkbox" name="gender" value="m"/>
+			Female <input type="checkbox" name="gender" value="f"/>
+		  </div>
+		
+        
+          
+		  
+        <input type="checkbox" id="remember_box" name="remember_me" value="remember_me">
+        <label for="remember_box" style="color:red";><u>I agree to the Legal Terms & Conditions</u></label><br>
+		  
+		  
+        <!-- </div> -->
+        <div class="button">
+          <input type="submit" value="Register" onclick="validate()">
+		  
+        </div>
+		 
+		
+      </form>
+    </div>
+  </div>
+  
+
+	<script>// Validation Form
+function validateForm()
+{
+	//FirstName 
+	var firstname= document.forms["myForm"]["fname"].value;
+	var RegXfname = /^[A-Za-z]+$/;
+	
+	//LastName 
+	var lastname= document.forms["myForm"]["lname"].value;
+	var RegXlname = /^[A-Za-z]+$/;
+	
+	
+	//Email
+	var emailadd= document.forms["myForm"]["email"].value;
+	var RegXemail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+	
+	//Phone 
+	var phone=document.forms["myForm"]["phonenum"].value;
+	var RegXphone=/\d{8}/;
+	
+	//Country Validation
+	   var s1 = document.getElementById("country").value;
+	   
+	   //Password Validation
+       var passwd = document.getElementById("pwd").value;
+	  	   //Confirm Validation
+       var cpasswd = document.getElementById("cpwd").value;
+	  
+	  if(firstname=='' || lastname=='')
+         {
+             alert('Fields cannot be blank');
+			 return false;
+         }
+         else if(!RegXfname.test(firstname) || !RegXlname.test(lastname))
+          {
+             alert('Name should contains only characters');
+			 return false;
+         }
+		 else if(emailadd== ''){
+		alert('Email invalid');
+			 return false;
+	}
+	
+	else if (!RegXemail.test(emailadd)){
+		alert('Email invalid format');
+			 return false;
+	}
+	 else if(phone== ''){
+		alert('Phone cannot be blank');
+			 return false;
+	}
+	else if (!RegXphone.test(phone)){
+		alert('phone invalid format');
+			 return false;
+	}  
+	else if (passwd !== cpasswd) {
+            alert("Password do not match");
+			 return false;
+        }
+	
+	else if(RegXfname.test(firstname) && RegXfname.test(firstname) && RegXfname.test(emailadd) && RegXfname.test(phone)){
+	
+	return true;
+	}
+	
+}
+</script>
+	
+<script>
+ function myfunc(x){
+    let box = document.getElementById('txtOther');
+	
+	
+	if (x.value  == 'O'){
+	    box.style.display = "block";
+	}
+	else{
+	    box.style.display = "none";
+		}
+}
+
+
+</script>
+	
+	
+	
+</body>
+
+</html>
